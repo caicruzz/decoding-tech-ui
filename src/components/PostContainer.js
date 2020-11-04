@@ -16,8 +16,8 @@ export class PostContainer extends Component {
     }
 
     client = contentful.createClient({
-        space: 'zokp22j9sjdt',
-        accessToken: 'wwUiQGspUTpYQb3H92AJdBKajq_wUcMabdl_G5FwsRc'
+        space: '',
+        accessToken: ''
     });
 
     componentDidMount() {
