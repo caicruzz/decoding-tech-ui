@@ -1,0 +1,34 @@
+#container {
+ padding: 1% 4%;
+}
+
+#post-grid-item {
+ margin: 0 2%;
+}
+
+#signup-form-grid-item {
+ margin-bottom: 30%;
+}
+
+#about-author-grid-item {
+ position: relative;
+}
+
+#author-card {
+ align-content: center;
+ width: 100%;
+ text-align: center;
+ border-top: #3679ff solid 35px;
+}
+
+#author-avatar {
+ height: 150px;
+ width: 150px;
+ position: absolute;
+ top: -20%;
+ left: 30%;
+}
+
+#author-about {
+ margin-top: 13%;
+}

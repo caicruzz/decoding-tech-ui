@@ -5,6 +5,7 @@ import * as contentful from 'contentful';
 import * as showdown from 'showdown';
 
 import Post from './Post';
+import './PostContainer.css';
 
 export class PostContainer extends Component {
     state = {
@@ -39,27 +40,26 @@ export class PostContainer extends Component {
 
     render() {
         return (
-            <div style={{padding: '1% 4%'}}>
-                <Grid container spacing={10}>
-                    <Grid item sx={12} md={8} style={{margin: '0 2%'}}>
+                <Grid id='container' container spacing={10}>
+                    <Grid id='post-grid-item' item sx={12} md={8}>
                         <Post title={this.state.title} featuredMedia={this.state.featuredMedia} body={this.state.body}></Post>
                     </Grid>
                     <Grid container item sx={12} md={3} direction='column'>
-                        <Grid item style={{marginBottom: '30%'}}>
+                        <Grid id='signup-form-grid-item' item>
                             <SignUpForm></SignUpForm>
                         </Grid>
-                        <Grid item style={{ position: 'relative'}}>
-                            <Card style={{ alignContent:"center", width: '100%', textAlign: 'center'}}>
-                                <CardContent style={{}}>
-                                    <Avatar style={{height: '150px', width: '150px', position: 'absolute', top: '-20%', left: '30%'}}
-                                            src={this.state.authorProfilePic.url}>{this.state.author.firstName}</Avatar>
-                                    <p style={{marginTop: '20%'}}>{this.state.author.about}</p>
+                        <Grid id='about-author-grid-item' item>
+                            <Card id='author-card'>
+                                <CardContent>
+                                    <Avatar id='author-avatar' src={this.state.authorProfilePic.url}>
+                                        {this.state.author.firstName}
+                                    </Avatar>
+                                    <p id='author-about'>{this.state.author.about}</p>
                                 </CardContent>
                             </Card>
                         </Grid>
                     </Grid>
                 </Grid>
-            </div>
         )
     }
 }

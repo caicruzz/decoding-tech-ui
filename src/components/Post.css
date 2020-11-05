@@ -1,0 +1,9 @@
+#featured-media {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+#post-body {
+    margin-top: 3%;
+}
