@@ -3,7 +3,7 @@ import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Navbar from './components/Navbar';
 import './App.css';
-import PostContainer from "./components/PostContainer";
+import Home from './components/Home';
 
 const theme = createMuiTheme({
   palette: {
@@ -22,7 +22,7 @@ function App() {
     <div className='App'>
       <ThemeProvider theme={theme}>
         <Navbar></Navbar>
-        <PostContainer></PostContainer>
+        <Home></Home>
       </ThemeProvider>
     </div>
   );
