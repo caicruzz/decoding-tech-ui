@@ -15,8 +15,8 @@ class Home extends Component {
     }
 
     client = contentful.createClient({
-        space: 'zokp22j9sjdt',
-        accessToken: '6SEGX0XnOvDYffBvx3DM1ZdQoWVzHfGhJsR_3z07GTg'
+        space: '',
+        accessToken: ''
     });
 
     componentDidMount() {
@@ -33,11 +33,11 @@ class Home extends Component {
     }
 
     render() {
-        let blogPostCards = <div></div>
+        let blogPostCards = <div/>
         if (this.state.otherBlogPosts.length > 0) {
             blogPostCards = this.state.otherBlogPosts.map(bp => (
                 <Grid item sm={12} md={4} key={bp.sys.id}>
-                    <DisplayCard blogPost={bp}></DisplayCard>
+                    <DisplayCard blogPost={bp}/>
                 </Grid>
             ));
         }
