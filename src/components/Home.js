@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import {  Grid } from '@material-ui/core';
-import { DisplayCard } from "./DisplayCard";
-import * as contentful from 'contentful';
+import { Grid } from '@material-ui/core';
+import { DisplayCard } from './DisplayCard';
+import { Client } from '../contentful/client'
 import Image from 'material-ui-image';
 
 import './Home.css'
@@ -14,13 +14,8 @@ class Home extends Component {
         otherBlogPosts: []
     }
 
-    client = contentful.createClient({
-        space: '',
-        accessToken: ''
-    });
-
     componentDidMount() {
-        this.client.getEntries({
+        Client.contentful.getEntries({
             content_type: 'blogPost'
         })
             .then((response) => {

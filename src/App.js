@@ -1,9 +1,12 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import PostContainer from './components/PostContainer';
 import Navbar from './components/Navbar';
-import './App.css';
 import Home from './components/Home';
+
+import './App.css';
 
 const theme = createMuiTheme({
   palette: {
@@ -22,7 +25,16 @@ function App() {
     <div className='App'>
       <ThemeProvider theme={theme}>
         <Navbar></Navbar>
-        <Home></Home>
+        <a href="/home">home</a>
+        <br/>
+        <a href="/post">post</a>
+          <Switch>
+            <Route path='/home'>
+              <Home></Home>
+            </Route>
+            <Route path='/post/:uri' render={(props) => <PostContainer uri={props.match.params.uri}></PostContainer>}>
+            </Route>
+          </Switch>
       </ThemeProvider>
     </div>
   );
