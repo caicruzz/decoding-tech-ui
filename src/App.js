@@ -24,15 +24,12 @@ function App() {
   return (
     <div className='App'>
       <ThemeProvider theme={theme}>
-        <Navbar></Navbar>
-        <a href="/home">home</a>
-        <br/>
-        <a href="/post">post</a>
+        <Navbar/>
           <Switch>
             <Route path='/home'>
-              <Home></Home>
+              <Home/>
             </Route>
-            <Route path='/post/:uri' render={(props) => <PostContainer uri={props.match.params.uri}></PostContainer>}>
+            <Route path='/post/:uri' render={(props) => <PostContainer uri={props.match.params.uri}/>}>
             </Route>
           </Switch>
       </ThemeProvider>

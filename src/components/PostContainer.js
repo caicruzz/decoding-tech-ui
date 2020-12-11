@@ -34,7 +34,7 @@ export class PostContainer extends React.Component {
 
     render() {
         return (
-            <Grid id='container' container spacing={10}>
+            <Grid id='container' container spacing={0}>
                 <Grid id='post-grid-item' item sx={12} md={8}>
                     <Post
                         title={this.state.title}
