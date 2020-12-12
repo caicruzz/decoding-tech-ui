@@ -19,7 +19,15 @@ export class SignUpForm extends React.Component {
 
     handleInputChange(event) {
         const {value, name} = event.target;
-        this.setState({[name]: value});
+        this.setState({[name]: value}, () => {
+            if (this.state.email) {
+                if (!this.validateEmail(this.state.email)) {
+                    this.setState({showMessage: true, submitMessage: 'Invalid Email', messageClass: 'error'});
+                } else {
+                    this.setState({showMessage: false})
+                }
+            }
+        });
     }
 
     submit() {
@@ -34,8 +42,13 @@ export class SignUpForm extends React.Component {
             })
             .then(_ => setTimeout(() => {
                 this.setState({showMessage: false})
-            }, 5000))
+            }, 3000))
             .catch(e => console.error(e));
+    }
+
+    validateEmail(email) {
+        const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return emailRegex.test(email);
     }
 
     render() {
@@ -61,7 +74,7 @@ export class SignUpForm extends React.Component {
                                 onChange={this.handleInputChange}/>
                         </Grid>
                         <Grid id='submit-button-grid-item' item sm={12}>
-                            <Button size='medium' disabled={!this.state.email || !this.state.firstName} variant='contained' color='secondary' onClick={this.submit}>
+                            <Button size='medium' disabled={this.state.showMessage} variant='contained' color='secondary' onClick={this.submit}>
                                 Submit
                             </Button>
                         </Grid>
