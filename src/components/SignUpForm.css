@@ -6,3 +6,19 @@
 #submit-button-grid-item {
     margin: 15px 0;
 }
+
+.success {
+    color: white;
+    background-color: forestgreen;
+    border: solid forestgreen  1px;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.error {
+    color: white;
+    background-color: red;
+    border: solid red  1px;
+    border-radius: 5px;
+    padding: 2px;
+}
