@@ -43,7 +43,7 @@ export class PostContainer extends React.Component {
                 </Grid>
                 <Grid container item sx={12} md={3} direction='column'>
                     <Grid id='signup-form-grid-item' item>
-                        <SignUpForm></SignUpForm>
+                        <SignUpForm client={Client.sendInBlue}></SignUpForm>
                     </Grid>
                     <Grid id='about-author-grid-item' item>
                         <Card id='author-card'>
