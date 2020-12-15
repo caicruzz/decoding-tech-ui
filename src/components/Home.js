@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 
 import Pagination from '@material-ui/lab/Pagination';
-import { Grid } from '@material-ui/core';
+import {Button, Grid, Typography} from '@material-ui/core';
 import { DisplayCard } from './DisplayCard';
 import { Client } from '../contentful/client';
 import Image from 'material-ui-image';
 
 import './Home.css'
+import {Link} from "react-router-dom";
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            featuredBlogPost: {},
+            featuredBlogPost: null,
             featuredMedia: '',
             otherBlogPosts: [],
             totalItems: 0
@@ -26,10 +27,11 @@ class Home extends Component {
     componentDidMount() {
         Client.contentful.getEntries({
             content_type: 'blogPost',
-            order: 'sys.createdAt',
+            order: '-sys.createdAt',
             limit: 1
         })
             .then((response) => {
+                console.log(response)
                 const featuredBlogPost = response.items.slice(0,1)[0];
                 const featuredMedia = featuredBlogPost.fields.featuredMedia.fields.file.url;
                 this.setState({ featuredBlogPost, featuredMedia})
@@ -46,7 +48,7 @@ class Home extends Component {
 
     calculateBlogPostsToSkip(selectedPage) {
         // on the first page skip 1 (featured post), other pages skip the previous page 6 posts plus the featured post
-        return selectedPage == 1 ? 1 : ((selectedPage - 1) * 6) + 1
+        return selectedPage === 1 ? 1 : ((selectedPage - 1) * 6) + 1
     }
 
     getBlogPosts(skip) {
@@ -70,6 +72,9 @@ class Home extends Component {
 
     render() {
         let blogPostCards = <div/>
+
+        const featuredBlogPostUri = this.state.featuredBlogPost ? this.state.featuredBlogPost.fields.uri : '';
+        const featuredBlogPostTitle = this.state.featuredBlogPost ? this.state.featuredBlogPost.fields.title : '';
         if (this.state.otherBlogPosts.length > 0) {
             blogPostCards = this.state.otherBlogPosts.map(bp => (
                 <Grid item sm={12} md={4} key={bp.sys.id}>
@@ -81,7 +86,13 @@ class Home extends Component {
         return (
             <div>
                 <div id='featured-media-container'>
-                    <Image id='featured-media' src={this.state.featuredMedia} alt='featured blog post image' aspectRatio={(16/9)}/>
+                    <Link className='button-link' to={{pathname: `/post/${featuredBlogPostUri}`}}>
+                        <Image id='featured-media' src={this.state.featuredMedia} alt='featured blog post image' aspectRatio={(16/9)}/>
+                    </Link>
+                    <h1 id='featured-post-title'>
+                        {featuredBlogPostTitle}
+                    </h1>
+                    <hr id='divider'/>
                 </div>
                 <Grid id='blog-posts-grid' className='grid-container' container spacing={0}>
                     { blogPostCards }

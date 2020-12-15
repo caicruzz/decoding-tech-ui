@@ -9,7 +9,7 @@ export function Post(props) {
     return (
         <div>
             <h1 id='title'>{props.title}</h1>
-            <Image id='featured-media' src={props.featuredMedia} alt='blog post main image' aspectRatio={(16/9)}/>
+            <Image id='post-featured-media' src={props.featuredMedia} alt='blog post main image' aspectRatio={(16/9)}/>
             <Card id='post-body'>
                 <CardContent>
                     <div id="body" dangerouslySetInnerHTML={{__html: props.body}}/>
