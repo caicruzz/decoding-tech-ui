@@ -1,0 +1,29 @@
+#footer {
+    margin-top: 1.5em;
+    padding: 1.5em;
+    height: 100%;
+    border: solid #3679ff 1px;
+    background-color: #3679ff;
+}
+
+#footer a {
+    text-decoration: none;
+    color: white;
+}
+
+#social-media-icons {
+    margin-left: 45%;
+}
+
+#links-container {
+    margin: 1% 0 0 38%;
+}
+
+.links {
+    margin: 0 3% 0 0;
+}
+
+.social-media-logo {
+    width: 6%;
+    margin: 0 3% 0 0;
+}
