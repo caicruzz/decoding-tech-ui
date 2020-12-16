@@ -56,7 +56,7 @@ export class SignUpForm extends React.Component {
             <Paper id='newsletter-container'>
                 <h1>Newsletter</h1>
                 <div id='form-container'>
-                    <Grid container>
+                    <Grid id='name-input-grid-item' container>
                         <Grid item sm={12}>
                             <TextField
                                 id='name-input'
@@ -73,8 +73,17 @@ export class SignUpForm extends React.Component {
                                 name='email'
                                 onChange={this.handleInputChange}/>
                         </Grid>
+                    </Grid>
+                    <Grid container>
                         <Grid id='submit-button-grid-item' item sm={12}>
-                            <Button size='medium' disabled={this.state.showMessage} variant='contained' color='secondary' onClick={this.submit}>
+                            <Button
+                                id='submit-button'
+                                size='large'
+                                disabled={this.state.showMessage || !this.state.firstName || !this.state.email}
+                                variant='contained'
+                                color='secondary'
+                                onClick={this.submit}
+                            >
                                 Submit
                             </Button>
                         </Grid>

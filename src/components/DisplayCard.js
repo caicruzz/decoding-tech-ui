@@ -18,7 +18,9 @@ export function DisplayCard({blogPost}) {
 
     return (
         <Card className='display-card'>
-            <Image src={featuredMedia.file.url} alt='featured blog post image' aspectRatio={(16/9)}/>
+            <Link className='button-link' to={{pathname: `/post/${blogPost.fields.uri}`}}>
+                <Image src={featuredMedia.file.url} alt='featured blog post image' aspectRatio={(16 / 9)}/>
+            </Link>
             <CardContent>
                 <h3>{blogPost.fields.title}</h3>
                 <p>{`${blogPost.fields.preview}...`}</p>

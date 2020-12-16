@@ -1,34 +1,98 @@
+@media only screen and (max-width: 600px) {
+    #author-avatar {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        top: -20%;
+        left: 30%;
+    }
+
+    #author-about {
+        margin-top: 13%;
+    }
+
+    #author-card {
+        align-content: center;
+        width: 100%;
+        text-align: center;
+        border-top: #3679ff solid 35px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    #author-avatar {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        top: -20%;
+        left: 40%;
+    }
+
+    #author-about {
+        margin-top: 8%;
+    }
+
+    #author-card {
+        align-content: center;
+        width: 100%;
+        text-align: center;
+        border-top: #3679ff solid 35px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    #author-avatar {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        top: -20%;
+        left: 35%;
+    }
+
+    #author-about {
+        margin-top: 13%;
+    }
+
+    #author-card {
+        align-content: center;
+        width: 100%;
+        text-align: center;
+        border-top: #3679ff solid 35px;
+    }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+    #author-avatar {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        top: -7%;
+        left: 20%;
+    }
+
+    #author-card {
+        align-content: center;
+        width: 100%;
+        text-align: center;
+        border-top: #3679ff solid 35px;
+        margin-top: 20%;
+    }
+}
+
+
 #container {
- padding: 1% 4%;
+    padding: 0 4%;
 }
 
 #post-grid-item {
- margin: 0 2%;
+    margin: 0 2%;
 }
 
 #signup-form-grid-item {
- margin-bottom: 30%;
+    margin-bottom: 30%;
+    margin-top: 20%;
 }
 
 #about-author-grid-item {
- position: relative;
-}
-
-#author-card {
- align-content: center;
- width: 100%;
- text-align: center;
- border-top: #3679ff solid 35px;
-}
-
-#author-avatar {
- height: 150px;
- width: 150px;
- position: absolute;
- top: -20%;
- left: 30%;
-}
-
-#author-about {
- margin-top: 13%;
+    position: relative;
 }

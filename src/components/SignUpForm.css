@@ -1,10 +1,14 @@
+#name-input-grid-item {
+    display: block;
+}
+
 #newsletter-container {
     text-align: center;
     border-top: #041c4c solid 35px;
 }
 
 #submit-button-grid-item {
-    margin: 15px 0;
+    margin: 5% 30%;
 }
 
 .success {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Pagination from '@material-ui/lab/Pagination';
-import {Button, Grid, Typography} from '@material-ui/core';
+import {Container, Grid} from '@material-ui/core';
 import { DisplayCard } from './DisplayCard';
 import { Client } from '../contentful/client';
 import Image from 'material-ui-image';
@@ -31,7 +31,6 @@ class Home extends Component {
             limit: 1
         })
             .then((response) => {
-                console.log(response)
                 const featuredBlogPost = response.items.slice(0,1)[0];
                 const featuredMedia = featuredBlogPost.fields.featuredMedia.fields.file.url;
                 this.setState({ featuredBlogPost, featuredMedia})
@@ -48,14 +47,14 @@ class Home extends Component {
 
     calculateBlogPostsToSkip(selectedPage) {
         // on the first page skip 1 (featured post), other pages skip the previous page 6 posts plus the featured post
-        return selectedPage === 1 ? 1 : ((selectedPage - 1) * 6) + 1
+        return selectedPage === 1 ? 1 : ((selectedPage - 1) * 4) + 1
     }
 
     getBlogPosts(skip) {
         Client.contentful.getEntries({
             content_type: 'blogPost',
             order: 'sys.createdAt',
-            limit: 6,
+            limit: 4,
             skip
         })
             .then((response) => {
@@ -67,7 +66,7 @@ class Home extends Component {
     }
 
     calculateNumberOfTotalPages() {
-        return Math.ceil(this.state.totalItems / 6)
+        return Math.ceil(this.state.totalItems / 4)
     }
 
     render() {
@@ -77,7 +76,7 @@ class Home extends Component {
         const featuredBlogPostTitle = this.state.featuredBlogPost ? this.state.featuredBlogPost.fields.title : '';
         if (this.state.otherBlogPosts.length > 0) {
             blogPostCards = this.state.otherBlogPosts.map(bp => (
-                <Grid item sm={12} md={4} key={bp.sys.id}>
+                <Grid className='display-card' item sm={12} md={12} key={bp.sys.id}>
                     <DisplayCard blogPost={bp}/>
                 </Grid>
             ));
@@ -85,20 +84,18 @@ class Home extends Component {
 
         return (
             <div>
-                <div id='featured-media-container'>
+                <Container id='featured-media-container'>
                     <Link className='button-link' to={{pathname: `/post/${featuredBlogPostUri}`}}>
                         <Image id='featured-media' src={this.state.featuredMedia} alt='featured blog post image' aspectRatio={(16/9)}/>
                     </Link>
                     <h1 id='featured-post-title'>
                         {featuredBlogPostTitle}
                     </h1>
-                    <hr id='divider'/>
-                </div>
                 <Grid id='blog-posts-grid' className='grid-container' container spacing={0}>
                     { blogPostCards }
                 </Grid>
                 <Grid container>
-                    <Grid item sm={5}></Grid>
+                    <Grid item sm={5}/>
                     <Grid item sm={7}>
                         <Pagination
                             count={this.calculateNumberOfTotalPages()}
@@ -108,6 +105,7 @@ class Home extends Component {
                         />
                     </Grid>
                 </Grid>
+                </Container>
             </div>
             )
     }
