@@ -1,0 +1,24 @@
+@media only screen and (max-width: 600px) {
+    #not-found {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    #not-found {
+        width: 80%;
+    }
+}
+
+
+@media only screen and (min-width: 1025px) {
+    #not-found {
+        width: 20%;
+    }
+}
+
+#not-found {
+    margin-top: 3%;
+    text-align: center;
+    color: #4A4A4A;
+}
