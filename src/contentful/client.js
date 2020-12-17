@@ -2,8 +2,8 @@ import * as contentful from 'contentful';
 
 export class Client {
     static contentful = contentful.createClient({
-        space: '',
-        accessToken: ''
+        space: process.env.REACT_APP_CONTENT_ENV,
+        accessToken: process.env.REACT_APP_CONTENT_TOKEN
     });
 
     static sendInBlue = {
@@ -18,7 +18,7 @@ export class Client {
                 }),
                 headers : {
                     'Content-type': 'application/json',
-                    'api-key': ''
+                    'api-key': process.env.REACT_APP_SENDINBLUE
                 }
             })
         }
