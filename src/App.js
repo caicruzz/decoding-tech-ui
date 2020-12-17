@@ -6,8 +6,8 @@ import PostContainer from './components/PostContainer';
 import NotFoundPage from './components/NotFoundPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
 import Home from './components/Home';
+
 import './App.css';
 
 const theme = createMuiTheme({

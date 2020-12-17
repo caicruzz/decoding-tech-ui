@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Pagination from '@material-ui/lab/Pagination';
+import FeaturedBlogPost from './FeaturedBlogPost';
 import {Container, Grid} from '@material-ui/core';
-import { DisplayCard } from './DisplayCard';
-import { Client } from '../contentful/client';
-import Image from 'material-ui-image';
+import {DisplayCard} from './DisplayCard';
+import {Client} from '../contentful/client';
 
 import './Home.css'
-import {Link} from "react-router-dom";
 
 class Home extends Component {
     constructor(props) {
@@ -15,6 +14,7 @@ class Home extends Component {
         this.state = {
             featuredBlogPost: null,
             featuredMedia: '',
+            selectedPage: 1,
             otherBlogPosts: [],
             totalItems: 0
         }
@@ -31,9 +31,9 @@ class Home extends Component {
             limit: 1
         })
             .then((response) => {
-                const featuredBlogPost = response.items.slice(0,1)[0];
+                const featuredBlogPost = response.items.slice(0, 1)[0];
                 const featuredMedia = featuredBlogPost.fields.featuredMedia.fields.file.url;
-                this.setState({ featuredBlogPost, featuredMedia})
+                this.setState({featuredBlogPost, featuredMedia})
             })
             .catch(console.error)
 
@@ -43,6 +43,8 @@ class Home extends Component {
     handlePaginationChange(e, selectedPage) {
         const skip = this.calculateBlogPostsToSkip(selectedPage);
         this.getBlogPosts(skip);
+        this.setState({selectedPage})
+        window.scrollTo(0, 0);
     }
 
     calculateBlogPostsToSkip(selectedPage) {
@@ -76,7 +78,7 @@ class Home extends Component {
         const featuredBlogPostTitle = this.state.featuredBlogPost ? this.state.featuredBlogPost.fields.title : '';
         if (this.state.otherBlogPosts.length > 0) {
             blogPostCards = this.state.otherBlogPosts.map(bp => (
-                <Grid className='display-card' item sm={12} md={12} key={bp.sys.id}>
+                <Grid item sm={12} md={12} key={bp.sys.id}>
                     <DisplayCard blogPost={bp}/>
                 </Grid>
             ));
@@ -84,30 +86,31 @@ class Home extends Component {
 
         return (
             <div>
-                <Container id='featured-media-container'>
-                    <Link className='button-link' to={{pathname: `/post/${featuredBlogPostUri}`}}>
-                        <Image id='featured-media' src={this.state.featuredMedia} alt='featured blog post image' aspectRatio={(16/9)}/>
-                    </Link>
-                    <h1 id='featured-post-title'>
-                        {featuredBlogPostTitle}
-                    </h1>
-                <Grid id='blog-posts-grid' className='grid-container' container spacing={0}>
-                    { blogPostCards }
-                </Grid>
-                <Grid container>
-                    <Grid item sm={5}/>
-                    <Grid item sm={7}>
-                        <Pagination
-                            count={this.calculateNumberOfTotalPages()}
-                            color='secondary'
-                            size='large'
-                            onChange={this.handlePaginationChange}
+                <Container id='home-container'>
+                    <div hidden={this.state.selectedPage !== 1}>
+                        <FeaturedBlogPost
+                            featuredBlogPostUri={featuredBlogPostUri}
+                            featuredBlogPostTitle={featuredBlogPostTitle}
+                            featuredMedia={this.state.featuredMedia}
                         />
+                    </div>
+                    <Grid id='blog-posts-grid' className='grid-container' container spacing={0}>
+                        {blogPostCards}
                     </Grid>
-                </Grid>
+                    <Grid container>
+                        <Grid item sm={5}/>
+                        <Grid item sm={7}>
+                            <Pagination
+                                count={this.calculateNumberOfTotalPages()}
+                                color='secondary'
+                                size='large'
+                                onChange={this.handlePaginationChange}
+                            />
+                        </Grid>
+                    </Grid>
                 </Container>
             </div>
-            )
+        )
     }
 }
 

@@ -12,7 +12,7 @@ export default function NotFoundPage() {
                 <Image src={NotFoundImg} aspectRatio={(1/1)} alt='Not found image'></Image>
             </a>
             <h1>That page does not exist...</h1>
-            <h3>Click the logo to go home!😊</h3>
+            <h3>Click the logo to go home!<span aria-label='happy face'role='img' >😊</span></h3>
         </Container>
     )
 }
