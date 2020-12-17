@@ -23,7 +23,7 @@ const theme = createMuiTheme({
     }
 });
 
-ReactGA.initialize('UA-185749728-2');
+ReactGA.initialize(process.env.REACT_APP_GAID, {gaOptions: {siteSpeedSampleRate: 100}});
 
 function App() {
     useEffect(() => {
