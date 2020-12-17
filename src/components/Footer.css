@@ -7,16 +7,6 @@
         width: 25%;
         margin: 0 8% 0 0;
     }
-
-    #links-container {
-        margin: 1% 0 0 0%;
-    }
-
-    .links {
-        text-align: center;
-        display: block;
-        margin: 2% 0 0 0;
-    }
 }
 
 @media only screen and (min-width: 600px) {
@@ -28,16 +18,6 @@
     .social-media-logo {
         width: 20%;
         margin: 0 8% 0 0;
-    }
-
-    #links-container {
-        margin: 1% 0 0 0;
-    }
-
-    .links {
-        text-align: center;
-        display: block;
-        margin: 2% 0 0 0;
     }
 }
 
@@ -72,4 +52,15 @@
 #footer a {
     text-decoration: none;
     color: white;
+}
+
+#links-container {
+    margin: 1% 0 0 0;
+}
+
+.links {
+    color: white;
+    text-align: center;
+    display: block;
+    margin: 2% 0 0 0;
 }

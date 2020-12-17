@@ -23,7 +23,7 @@ function Footer() {
             <div id='links-container'>
                 <a className='links' href='https://go.decodingtech.io/terms-and-conditions' target='_blank' rel='noopener noreferrer'>Terms and Conditions</a>
                 <a className='links' href='https://go.decodingtech.io/privacy' target='_blank' rel='noopener noreferrer'>Privacy Policy</a>
-                <a className='links' >Copyright {currentYear} - Decoding Tech</a>
+                <p className='links'>Copyright {currentYear} - Decoding Tech</p>
             </div>
         </div>
     )

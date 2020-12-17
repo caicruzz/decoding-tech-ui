@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 
 import {createMuiTheme, ThemeProvider} from '@material-ui/core';
@@ -7,6 +7,7 @@ import NotFoundPage from './components/NotFoundPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home';
+import ReactGA from 'react-ga';
 
 import './App.css';
 
@@ -22,7 +23,13 @@ const theme = createMuiTheme({
     }
 });
 
+ReactGA.initialize('UA-185749728-2');
+
 function App() {
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    })
+
     return (
         <div className='App'>
             <ThemeProvider theme={theme}>
