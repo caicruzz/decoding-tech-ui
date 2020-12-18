@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
 
 import Pagination from '@material-ui/lab/Pagination';
-import FeaturedBlogPost from './FeaturedBlogPost';
 import {Container, Grid} from '@material-ui/core';
-import {DisplayCard} from './DisplayCard';
 import {Client} from '../contentful/client';
+import {DisplayCard} from './DisplayCard';
 
-import './Home.css'
+import './Home.css';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            featuredBlogPost: null,
-            featuredMedia: '',
-            selectedPage: 1,
-            otherBlogPosts: [],
+            blogPosts: [],
             totalItems: 0
         }
 
@@ -25,44 +21,31 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        Client.contentful.getEntries({
-            content_type: 'blogPost',
-            order: '-sys.createdAt',
-            limit: 1
-        })
-            .then((response) => {
-                const featuredBlogPost = response.items.slice(0, 1)[0];
-                const featuredMedia = featuredBlogPost.fields.featuredMedia.fields.file.url;
-                this.setState({featuredBlogPost, featuredMedia})
-            })
-            .catch(console.error)
-
-        this.getBlogPosts(1);
+        this.getBlogPosts(0);
     }
 
     handlePaginationChange(e, selectedPage) {
         const skip = this.calculateBlogPostsToSkip(selectedPage);
         this.getBlogPosts(skip);
-        this.setState({selectedPage})
         window.scrollTo(0, 0);
     }
 
     calculateBlogPostsToSkip(selectedPage) {
         // on the first page skip 1 (featured post), other pages skip the previous page 6 posts plus the featured post
-        return selectedPage === 1 ? 1 : ((selectedPage - 1) * 4) + 1
+        return selectedPage === 1 ? 0 : ((selectedPage - 1) * 4);
     }
 
     getBlogPosts(skip) {
         Client.contentful.getEntries({
             content_type: 'blogPost',
-            order: 'sys.createdAt',
+            order: '-sys.createdAt',
             limit: 4,
             skip
         })
             .then((response) => {
-                const otherBlogPosts = response.items;
-                const totalItems = response.total - 1;
-                this.setState({otherBlogPosts, totalItems})
+                const blogPosts = response.items;
+                const totalItems = response.total;
+                this.setState({blogPosts, totalItems})
             })
             .catch(console.error)
     }
@@ -72,13 +55,11 @@ class Home extends Component {
     }
 
     render() {
-        let blogPostCards = <div/>
+        let blogPostCards;
 
-        const featuredBlogPostUri = this.state.featuredBlogPost ? this.state.featuredBlogPost.fields.uri : '';
-        const featuredBlogPostTitle = this.state.featuredBlogPost ? this.state.featuredBlogPost.fields.title : '';
-        if (this.state.otherBlogPosts.length > 0) {
-            blogPostCards = this.state.otherBlogPosts.map(bp => (
-                <Grid item sm={12} md={12} key={bp.sys.id}>
+        if (this.state.blogPosts.length > 0) {
+            blogPostCards = this.state.blogPosts.map(bp => (
+                <Grid item sm={12} key={bp.sys.id}>
                     <DisplayCard blogPost={bp}/>
                 </Grid>
             ));
@@ -87,14 +68,7 @@ class Home extends Component {
         return (
             <div>
                 <Container id='home-container'>
-                    <div hidden={this.state.selectedPage !== 1}>
-                        <FeaturedBlogPost
-                            featuredBlogPostUri={featuredBlogPostUri}
-                            featuredBlogPostTitle={featuredBlogPostTitle}
-                            featuredMedia={this.state.featuredMedia}
-                        />
-                    </div>
-                    <Grid id='blog-posts-grid' className='grid-container' container spacing={0}>
+                    <Grid id='blog-posts-grid' className='grid-container' container spacing={4}>
                         {blogPostCards}
                     </Grid>
                     <Grid container>
