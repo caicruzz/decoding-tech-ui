@@ -3,6 +3,14 @@
     margin-bottom: 3%;
 }
 
+.display-card-title h3, .display-card-title h6 {
+    display: inline;
+}
+
+.display-card-title h6 {
+    margin-left: 1%;
+}
+
 .button-link {
     text-decoration: none;
     color: white;

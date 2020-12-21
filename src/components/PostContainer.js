@@ -16,7 +16,8 @@ export class PostContainer extends React.Component {
         body: '',
         featuredMedia: '',
         author: {},
-        authorProfilePic: ''
+        authorProfilePic: '',
+        createdAt: ''
     }
 
     componentDidMount() {
@@ -28,7 +29,8 @@ export class PostContainer extends React.Component {
             body: r.items[0].fields.body,
             featuredMedia: r.items[0].fields.featuredMedia.fields.file.url,
             author: r.items[0].fields.authors[0].fields,
-            authorProfilePic: r.items[0].fields.authors[0].fields.profilePicture.fields.file.url
+            authorProfilePic: r.items[0].fields.authors[0].fields.profilePicture.fields.file.url,
+            createdAt: r.items[0].sys.createdAt
         }))
     }
 
@@ -37,6 +39,7 @@ export class PostContainer extends React.Component {
             <Grid id='container' container spacing={0}>
                 <Grid id='post-grid-item' item sx={12} md={8}>
                     <Post
+                        createdAt={this.state.createdAt}
                         title={this.state.title}
                         featuredMedia={this.state.featuredMedia}
                         body={this.converter.makeHtml(this.state.body)}/>

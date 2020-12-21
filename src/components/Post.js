@@ -1,14 +1,15 @@
 import React from 'react';
 
 import { Card, CardContent } from '@material-ui/core';
-
-import './Post.css'
 import Image from 'material-ui-image';
 
-export function Post(props) {
+import './Post.css'
+
+export default function Post(props) {
     return (
         <div>
             <h1 id='title'>{props.title}</h1>
+            <h4 id='createdAt'>{new Date(props.createdAt).toDateString()}</h4>
             <Image id='post-featured-media' src={props.featuredMedia} alt='blog post main image' aspectRatio={(16/9)}/>
             <Card id='post-body'>
                 <CardContent>
@@ -18,5 +19,3 @@ export function Post(props) {
         </div>
     )
 }
-
-export default Post

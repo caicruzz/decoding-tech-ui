@@ -2,8 +2,14 @@
     width: 100%;
     border-radius: 10px;
     display: block;
+    box-shadow: 0 1px 3px rgba(0,0,0, 0.5);
 }
 
 #post-body {
     margin-top: 3%;
+}
+
+#createdAt {
+    font-style: italic;
+    color: #4A4A4A;
 }
