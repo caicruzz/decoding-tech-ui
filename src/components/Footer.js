@@ -3,6 +3,8 @@ import React from 'react';
 import YoutubeLogo from '../yt-logo.png';
 import InstagramLogo from '../instagram-logo.png';
 import GitHubLogo from '../github-logo.png';
+import LinkedInLogo from '../LinkedIn.png';
+import TwitterLogo from '../Twitter.png';
 import './Footer.css';
 
 function Footer() {
@@ -18,6 +20,12 @@ function Footer() {
                 </a>
                 <a href='https://go.decodingtech.io/github' target='_blank' rel='noopener noreferrer'>
                     <img className='social-media-logo' src={GitHubLogo} alt='GitHub logo'/>
+                </a>
+                <a href='https://go.decodingtech.io/linkedin' target='_blank' rel='noopener noreferrer'>
+                    <img className='social-media-logo' src={LinkedInLogo} alt='GitHub logo'/>
+                </a>
+                <a href='https://go.decodingtech.io/twitter' target='_blank' rel='noopener noreferrer'>
+                    <img className='social-media-logo' src={TwitterLogo} alt='GitHub logo'/>
                 </a>
             </div>
             <div id='links-container'>

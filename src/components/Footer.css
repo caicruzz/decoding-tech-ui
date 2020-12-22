@@ -1,43 +1,21 @@
-@media only screen and (max-width: 600px) {
-    #social-media-icons {
-        margin-left: 10%;
-    }
-
-    .social-media-logo {
-        width: 25%;
-        margin: 0 8% 0 0;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-
+@media only screen and (max-width: 1199px) {
     #social-media-icons {
         margin-left: 20%;
     }
 
     .social-media-logo {
-        width: 20%;
-        margin: 0 8% 0 0;
-    }
-}
-
-@media only screen and (min-width: 700px) {
-    #social-media-icons {
-        margin-left: 25%;
-    }
-
-    .social-media-logo {
-        width: 18%;
+        width: 15%;
+        margin: 0;
     }
 }
 
 @media only screen and (min-width: 1200px) {
     #social-media-icons {
-        margin-left: 35%;
+        margin-left: 43%;
     }
 
     .social-media-logo {
-        width: 10%;
+        width: 5%;
     }
 }
 
@@ -54,13 +32,9 @@
     color: white;
 }
 
-#links-container {
-    margin: 1% 0 0 0;
-}
-
 .links {
     color: white;
     text-align: center;
     display: block;
-    margin: 2% 0 0 0;
+    margin: 1% 0 0 0;
 }
